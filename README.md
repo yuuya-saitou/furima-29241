@@ -61,18 +61,19 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- has_one    :order
+- has_one    :buyers
 
 ## buyers テーブル
 
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| user           | references | null: false, foreign_key: true |
-
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
+- belongs_to :item
 - has_one    :order
 
 ## orders テーブル
@@ -86,9 +87,7 @@ Things you may want to cover:
 | building_name  | string     |                                |
 | phone_number   | integer    | null: false                    |
 | buyer          | references | null: false, foreign_key: true |
-| item           | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :buyer
-- belongs_to :item
