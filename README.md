@@ -85,7 +85,7 @@ Things you may want to cover:
 | municipality   | string     | null: false                    |
 | address        | string     | null: false                    |
 | building_name  | string     |                                |
-| phone_number   | integer    | null: false                    |
+| phone_number   | string     | null: false                    |
 | buyer          | references | null: false, foreign_key: true |
 
 ### Association
