@@ -28,17 +28,18 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column           | Type    | Options     |
-| ---------------- | ------- | ----------- |
-| id               | integer | null: false |
-| nickname         | string  | null: false |
-| email            | string  | null: false |
-| password         | string  | null: false |
-| family_name      | string  | null: false |
-| first_name       | string  | null: false |
-| family_name_kana | string  | null: false |
-| first_name_kana  | string  | null: false |
-| birthday         | integer | null: false |
+| Column           | Type    | Options                   |
+| ---------------- | ------- | ------------------------- |
+| id               | integer | null: false               |
+| nickname         | string  | null: false               |
+| email            | string  | null: false, unique: true |
+| password         | string  | null: false               |
+| password_confirm | string  | null: false               |
+| family_name      | string  | null: false               |
+| first_name       | string  | null: false               |
+| family_name_kana | string  | null: false               |
+| first_name_kana  | string  | null: false               |
+| birthday         | integer | null: false               |
 
 ### Association
 
@@ -58,6 +59,8 @@ Things you may want to cover:
 | shipping_area | string     | null: false                    |
 | shipping_days | string     | null: false                    |
 | price         | integer    | null: false                    |
+| created_at    | timestamp  | null: false                    |
+| updated_at    | timestamp  | null: false                    |
 | user_id       | references | null: false, foreign_key: true |
 
 ### Association
@@ -85,13 +88,15 @@ Things you may want to cover:
 
 ## orders テーブル
 
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| id       | integer    | null: false                    |
-| price    | string     | null: false                    |
-| token    | string     | null: false                    |
-| buyer_id | references | null: false, foreign_key: true |
-| item_id  | references | null: false, foreign_key: true |
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| id         | integer    | null: false                    |
+| price      | string     | null: false                    |
+| token      | string     | null: false, unique: true      |
+| created_at | timestamp  | null: false                    |
+| updated_at | timestamp  | null: false                    |
+| buyer_id   | references | null: false, foreign_key: true |
+| item_id    | references | null: false, foreign_key: true |
 
 ### Association
 
