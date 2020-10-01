@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  
+
   validates :nickname, presence: true
   validates :email, presence: true, format: { with: /@.+/, message: '正しいメールアドレスを使用してください'}
   validates :password, presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z{6,}/i, message: '6文字以上の半角英数字混合で入力してください'}
@@ -19,4 +21,5 @@ class User < ApplicationRecord
   end
 
   validates :birthday, presence: true
+  has_many :items
 end
