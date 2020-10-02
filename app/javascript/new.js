@@ -9,8 +9,6 @@ function price(){
     addTaxPrice.innerHTML = value * 0.1
     profit.innerHTML = value - (value * 0.1)
   })
-
-  //addTaxPrice.getAttribute
 }
 
 window.addEventListener('load', price);
