@@ -8,9 +8,23 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_area
   belongs_to_active_hash :shipping_days
 
-  validates :image, :name, :explanation, :category_id, :status_id,
-            :delivery_fee_id, :shipping_area_id, :shipping_days_id, presence: true
-  validates :category_id, :status_id, :delivery_fee_id, :shipping_area_id,
-            :shipping_days_id, numericality: { other_than: 1 } 
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range"}, presence: true
+  with_options presence: true do
+    validates :image
+    validates :name
+    validates :explanation
+    validates :category_id
+    validates :status_id
+    validates :delivery_fee_id
+    validates :shipping_area_id
+    validates :shipping_days_id
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range"}
+  end
+
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :status_id
+    validates :delivery_fee_id
+    validates :shipping_area_id
+    validates :shipping_days_id
+  end
 end
