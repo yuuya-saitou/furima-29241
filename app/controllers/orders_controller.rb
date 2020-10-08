@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only: [:index, :create] 
+  before_action :move_to_root
+
   def index
     @order = Order.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
     @order = BuyerOrder.new(order_params)
-    @item = Item.find(params[:item_id])
     if @order.valid?
       pay_item
       @order.save
@@ -29,5 +30,15 @@ class OrdersController < ApplicationController
       card: order_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
+  def move_to_root
+    if @item.buyer != nil
+      redirect_to root_path
+    end
   end
 end
